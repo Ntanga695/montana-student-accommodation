@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montana Student Accommodation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff10"><polygon points="0,0 1000,0 1000,100"/></svg>');
+            opacity: 0.1;
+        }
+
+        .logo {
+            max-height: 100px;
+            margin-bottom: 1.5rem;
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            width: 100px;
+            height: 100px;
+            background: #f39c12;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+        }
+
+        .slogan {
+            font-size: 1.4rem !important;
+            font-weight: 500 !important;
+            font-style: italic;
+            color: #f39c12;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+            font-weight: 600;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), linear-gradient(135deg, #667eea, #764ba2);
+            background-size: cover;
+            background-position: center;
+            padding: 3rem;
+            border-radius: 15px;
+            line-height: 1.8;
+            color: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: #f0f0f0;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-item h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .service-item p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Facilities Grid */
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .facility-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .facility-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .facility-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .facility-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .facility-item h3 {
+            color: #2c3e50;
+            margin: 1.5rem 0 0.5rem 0;
+            padding: 0 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .facility-item p {
+            padding: 0 1.5rem 2rem 1.5rem;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Placeholder Images */
+        .placeholder-img {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 3px dashed #ddd;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .placeholder-img::before {
+            content: '🏠';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .contact-item h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .contact-item p {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+        }
+
+        .contact-link:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .contact-link p {
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        /* Image Popup Styles */
+        .facility-image {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .facility-image:hover {
+            opacity: 0.9;
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .popup-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            animation: scaleIn 0.3s ease;
+        }
+
+        .popup-content img {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .popup-content h3 {
+            text-align: center;
+            color: #2c3e50;
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 1001;
+        }
+
+        .close-btn:hover {
+            color: #e74c3c;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 2rem 1rem;
+            }
+            
+            .about-content {
+                padding: 2rem;
+            }
+            
+            .facilities-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                max-height: 80px;
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-item,
+        .facility-item {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .service-item:nth-child(2) { animation-delay: 0.1s; }
+        .service-item:nth-child(3) { animation-delay: 0.2s; }
+        .service-item:nth-child(4) { animation-delay: 0.3s; }
+        .service-item:nth-child(5) { animation-delay: 0.4s; }
+
+        .facility-item:nth-child(2) { animation-delay: 0.1s; }
+        .facility-item:nth-child(3) { animation-delay: 0.2s; }
+        .facility-item:nth-child(4) { animation-delay: 0.3s; }
+        .facility-item:nth-child(5) { animation-delay: 0.4s; }
+        .facility-item:nth-child(6) { animation-delay: 0.5s; }
+        .facility-item:nth-child(7) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">MSA</div>
+        <h1>Montana Student Accommodation</h1>
+        <p class="slogan">Smart living for smart future leaders</p>
+        <p>Accredited by NSFAS for University of Venda</p>
+    </header>
+
+    <section id="about">
+        <h2>About Montana Student Accommodation</h2>
+        <div class="about-content">
+            <p>Welcome to Montana Student Accommodation, your trusted home away from home. We are proudly accredited by NSFAS (National Student Financial Aid Scheme) and specifically cater to University of Venda students.</p>
+            <p>Our accommodation provides a safe, comfortable, and conducive environment for academic success. We understand the unique needs of university students and have designed our facilities and services to support your educational journey.</p>
+            <p>At Montana Student Accommodation, we believe that quality housing should be accessible and affordable. That's why we work closely with NSFAS to ensure eligible students can focus on their studies without worrying about accommodation costs.</p>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>What We Do</h2>
+        <div class="services-grid">
+            <div class="service-item">
+                <h3>Fully Furnished Rooms</h3>
+                <p>Modern, comfortable rooms with all essentials included</p>
+            </div>
+            <div class="service-item">
+                <h3>24/7 Security</h3>
+                <p>Safe and secure environment for all residents</p>
+            </div>
+            <div class="service-item">
+                <h3>High-Speed Internet</h3>
+                <p>Free WiFi throughout the building for studying</p>
+            </div>
+            <div class="service-item">
+                <h3>Cleaning Services</h3>
+                <p>Regular cleaning of common areas and maintenance</p>
+            </div>
+            <div class="service-item">
+                <h3>Daily Transport to School</h3>
+                <p>Convenient transport service to University of Venda</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="facilities">
+        <h2>What We Have</h2>
+        <div class="facilities-grid">
+            <div class="facility-item">
+                <div class="placeholder-img facility-image" onclick="openPopup('https://via.placeholder.com/400x300/667eea/ffffff?text=Study+Room', 'Study Room')">
+                    Study Room Image
+                </div>
+                <h3>Study Rooms</h3>
+                <p>Quiet spaces for focused studying</p>
+            </div>
+            <div class="facility-item">
+                <div class="placeholder-img facility-image" onclick="openPopup('https://via.placeholder.com/400x300/764ba2/ffffff?text=Shared+Kitchen', 'Shared Kitchen')">
+                    Kitchen Image
+                </div>
+                <h3>Shared Kitchen</h3>
+                <p>Fully equipped communal kitchens</p>
+            </div>
+            <div class="facility-item">
+                <div class="placeholder-img">
+                    Laundry Facilities
+                </div>
+                <h3>Laundry Facilities</h3>
+                <p>Washing machines and dryers available</p>
+            </div>
+            <div class="facility-item">
+                <div class="placeholder-img facility-image" onclick="openPopup('https://via.placeholder.com/400x300/f39c12/ffffff?text=Private+Bedroom', 'Private Bedroom')">
+                    Bedroom Image
+                </div>
+                <h3>Private Bedrooms</h3>
+                <p>Comfortable single and double rooms</p>
+            </div>
+            <div class="facility-item">
+                <div class="placeholder-img facility-image" onclick="openPopup('https://via.placeholder.com/400x300/e74c3c/ffffff?text=TV+Room', 'TV Room')">
+                    TV Room Image
+                </div>
+                <h3>TV Room</h3>
+                <p>Relax and watch movies with other residents</p>
+            </div>
+            <div class="facility-item">
+                <div class="placeholder-img facility-image" onclick="openPopup('https://via.placeholder.com/400x300/27ae60/ffffff?text=Tuck+Shop', 'Tuck Shop')">
+                    Tuck Shop Image
+                </div>
+                <h3>Tuck Shop</h3>
+                <p>Convenient on-site store for snacks and essentials</p>
+            </div>
+            <div class="facility-item">
+                <div class="placeholder-img facility-image" onclick="openPopup('https://via.placeholder.com/400x300/9b59b6/ffffff?text=Entertainment+Area', 'Entertainment Area')">
+                    Entertainment Area Image
+                </div>
+                <h3>Entertainment Area</h3>
+                <p>Fun space for games and social activities</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3>
+                <a href="mailto:montanastudentaccommodation@gmail.com" class="contact-link">
+                    <p>montanastudentaccommodation@gmail.com</p>
+                </a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📞</div>
+                <h3>Phone Numbers</h3>
+                <a href="tel:+27150042126" class="contact-link">
+                    <p>015 004 2126</p>
+                </a>
+                <a href="tel:+27793107866" class="contact-link">
+                    <p>079 310 7866</p>
+                </a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <h3>Address</h3>
+                <a href="https://maps.google.com/?q=631+Marude,+Thohoyandou,+0950" target="_blank" class="contact-link">
+                    <p>631 Marude, Thohoyandou, 0950</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Popup Modal -->
+    <div id="imagePopup" class="popup-overlay" onclick="closePopup()">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <img id="popupImage" src="" alt="">
+            <h3 id="popupTitle"></h3>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Montana Student Accommodation. NSFAS Accredited - Supporting University of Venda Students.</p>
+    </footer>
+
+    <script>
+        function openPopup(imageSrc, title) {
+            document.getElementById('imagePopup').style.display = 'flex';
+            document.getElementById('popupImage').src = imageSrc;
+            document.getElementById('popupTitle').textContent = title;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePopup() {
+            document.getElementById('imagePopup').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closePopup();
+            }
+        });
+    </script>
+</body>
+</html>
